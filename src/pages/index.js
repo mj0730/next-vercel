@@ -2,19 +2,21 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
+import axios from 'axios';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   async function submitPost() {
-    const res = await fetch('/api/hello', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ data: 'sending a post req' }),
-    });
-    const data = await res.json();
+    const { data } = await axios.post('api/hello', { data: 'axios post req' });
+    // const res = await fetch('/api/hello', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ data: 'fetch post req' }),
+    // });
+    // const data = await res.json();
     console.log(data);
   }
 
