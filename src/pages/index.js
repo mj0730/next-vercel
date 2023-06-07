@@ -8,15 +8,15 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   async function submitPost() {
-    const { data } = await axios.post('api/hello', { data: 'axios post req' });
-    // const res = await fetch('/api/hello', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ data: 'fetch post req' }),
-    // });
-    // const data = await res.json();
+    // const { data } = await axios.post('api/hello', { data: 'axios post req' });
+    const res = await fetch('/api/hello', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ username: 'fq', password: 'shrek' }),
+    });
+    const data = await res.json();
     console.log(data);
   }
 
