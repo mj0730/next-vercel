@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ['latin'] });
 export default function Home() {
   async function submitPost() {
     // const { data } = await axios.post('api/hello', { data: 'axios post req' });
-    const res = await fetch('/api/hello', {
+    const res = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
