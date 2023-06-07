@@ -15,24 +15,37 @@ export default async function login(req, res) {
       },
       referrerPolicy: 'origin-when-cross-origin',
     };
-    const data = await axios
-      .post(`https://pointsixtyfive.com/xenforo/api/auth`, userLoginData, options)
-      .then((response) => {
-        console.log(response.data);
-      })
-      .catch((e) => {
-        if (e.response.status === 400) {
-          res
-            .status(e.response.status)
-            .send({ message: 'There was an error logging in. Make sure the username/password is correct.' });
-          return;
-        }
+    const response = await fetch('https://pointsixtyfive.com/xenforo/api/auth', {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'XF-Api-Key': process.env.TOOLS_API_KEY,
+        'XF-Api-User': process.env.TOOLS_API_USER,
+      },
+      referrerPolicy: 'origin-when-cross-origin',
+      body: JSON.stringify({ username: 'fq', password: 'shrek' }),
+    });
 
-        if (e.request) {
-          res.status(e.request.status).send({ message: 'There was an error with the request.' });
-          return;
-        }
-      });
+    // const data = await axios
+    //   .post(`https://pointsixtyfive.com/xenforo/api/auth`, userLoginData, options)
+    //   .then((response) => {
+    //     console.log(response.data);
+    //   });
+    // .catch((e) => {
+    //   if (e.response.status === 400) {
+    //     res
+    //       .status(e.response.status)
+    //       .send({ message: 'There was an error logging in. Make sure the username/password is correct.' });
+    //     return;
+    //   }
+
+    //   if (e.request) {
+    //     res.status(e.request.status).send({ message: 'There was an error with the request.' });
+    //     return;
+    //   }
+    // }
+    // );
     res.status(200).send({ data: 'all right all right all right' });
 
     // if (data?.user.secondary_group_ids.length === 0) {
