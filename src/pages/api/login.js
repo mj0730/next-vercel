@@ -15,8 +15,21 @@ export default async function login(req, res) {
       },
       referrerPolicy: 'origin-when-cross-origin',
     };
-    const response = await fetch('https://pointsixtyfive.com/xenforo/api/auth', {
+    // const response = await fetch('https://pointsixtyfive.com/xenforo/api/auth', {
+    //   method: 'POST',
+    //   mode: 'cors',
+    //   headers: {
+    //     'Content-Type': 'application/x-www-form-urlencoded',
+    //     'XF-Api-Key': process.env.TOOLS_API_KEY,
+    //     'XF-Api-User': process.env.TOOLS_API_USER,
+    //   },
+    //   referrerPolicy: 'origin-when-cross-origin',
+    //   body: JSON.stringify({ username: 'fq', password: 'shrek' }),
+    // });
+
+    const data = await axios({
       method: 'POST',
+      url: 'https://pointsixtyfive.com/xenforo/api/auth',
       mode: 'cors',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
@@ -24,7 +37,7 @@ export default async function login(req, res) {
         'XF-Api-User': process.env.TOOLS_API_USER,
       },
       referrerPolicy: 'origin-when-cross-origin',
-      body: JSON.stringify({ username: 'fq', password: 'shrek' }),
+      data: { username: 'fq', password: 'shrek' },
     });
 
     // const data = await axios
@@ -46,7 +59,7 @@ export default async function login(req, res) {
     //   }
     // }
     // );
-    res.status(200).send({ data: 'all right all right all right' });
+    res.status(200).send({ msg: 'all right all right all right', data: data });
 
     // if (data?.user.secondary_group_ids.length === 0) {
     //   res.status(401).send({ message: 'You do not have permission to view this content.' });
