@@ -2,8 +2,8 @@ import axios from 'axios';
 
 export default async function login(req, res) {
   const validUserGroups = ['1'];
-
-  if (req.method == 'POST') {
+  console.log(req.method);
+  if (req.method === 'POST') {
     const userLoginData = req.body;
 
     const options = {
