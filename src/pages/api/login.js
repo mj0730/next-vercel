@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default async function login(req, res) {
   const validUserGroups = ['1'];
-  console.log(req.method);
+  console.log(process.env.XF_API_URL);
   if (req.method === 'POST') {
     const userLoginData = req.body;
 
@@ -17,8 +17,11 @@ export default async function login(req, res) {
     };
     const data = await axios
       .post(`${process.env.XF_API_URL}/auth`, userLoginData, options)
-      .then((response) => response.data)
+      .then((response) => {
+        console.log(response.data);
+      })
       .catch((e) => {
+        console.log(e);
         if (e.response.status === 400) {
           res
             .status(e.response.status)
