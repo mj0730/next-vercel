@@ -20,6 +20,19 @@ export default function Home() {
     console.log(data);
   }
 
+  async function login() {
+    const { data } = await axios.post('api/login', { username: 'joe', password: '1234' });
+    // const res = await fetch('/api/hello', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({ data: 'fetch post req' }),
+    // });
+    // const data = await res.json();
+    console.log(data);
+  }
+
   return (
     <>
       <Head>
@@ -63,6 +76,7 @@ export default function Home() {
             priority
             onClick={submitPost}
           />
+          <button onClick={login}>LOGIN</button>
         </div>
 
         <div className={styles.grid}>
