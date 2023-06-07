@@ -16,12 +16,11 @@ export default async function login(req, res) {
       referrerPolicy: 'origin-when-cross-origin',
     };
     const data = await axios
-      .post(`${process.env.XF_API_URL}/auth`, userLoginData, options)
+      .post(`https://pointsixtyfive.com/xenforo/api/auth`, userLoginData, options)
       .then((response) => {
         console.log(response.data);
       })
       .catch((e) => {
-        console.log(e);
         if (e.response.status === 400) {
           res
             .status(e.response.status)
