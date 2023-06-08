@@ -8,28 +8,19 @@ const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   async function submitPost() {
-    // const { data } = await axios.post('api/hello', { data: 'axios post req' });
     const res = await fetch('/api/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ username: 'fq', password: 'shrek' }),
+      body: JSON.stringify({ username: 'fq', password: 'shrek', fetch: true }),
     });
     const data = await res.json();
     console.log(data);
   }
 
   async function login() {
-    const { data } = await axios.post('api/login', { username: 'joe', password: '1234' });
-    // const res = await fetch('/api/hello', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({ data: 'fetch post req' }),
-    // });
-    // const data = await res.json();
+    const { data } = await axios.post('api/login', { username: 'joe', password: '1234', fetch: false });
     console.log(data);
   }
 
@@ -67,16 +58,11 @@ export default function Home() {
         </div>
 
         <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src='/next.svg'
-            alt='Next.js Logo'
-            width={180}
-            height={37}
-            priority
-            onClick={submitPost}
-          />
-          <button onClick={login}>LOGIN</button>
+          <Image className={styles.logo} src='/next.svg' alt='Next.js Logo' width={180} height={37} priority />
+          <div>
+            <button onClick={submitPost}>FETCH API</button>
+            <button onClick={login}>AXIOS</button>
+          </div>
         </div>
 
         <div className={styles.grid}>
