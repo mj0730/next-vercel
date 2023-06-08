@@ -16,12 +16,10 @@ export default function Home() {
       body: JSON.stringify({ username: 'fq', password: 'shrek', fetch: true }),
     });
     const data = await res.json();
-    console.log(data);
   }
 
   async function login() {
     const { data } = await axios.post('api/login', { username: 'joe', password: '1234', fetch: false });
-    console.log(data);
   }
 
   return (
@@ -59,36 +57,22 @@ export default function Home() {
 
         <div className={styles.center}>
           <Image className={styles.logo} src='/next.svg' alt='Next.js Logo' width={180} height={37} priority />
-          <div>
-            <button onClick={submitPost}>FETCH API</button>
-            <button onClick={login}>AXIOS</button>
-          </div>
         </div>
 
         <div className={styles.grid}>
-          <a
-            href='https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <div className={styles.card} onClick={submitPost}>
             <h2>
-              Docs <span>-&gt;</span>
+              FETCH API <span>-&gt;</span>
             </h2>
-            <p>Find in-depth information about Next.js features and&nbsp;API.</p>
-          </a>
+            <p>API route with fetch api used in api/login</p>
+          </div>
 
-          <a
-            href='https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-            className={styles.card}
-            target='_blank'
-            rel='noopener noreferrer'
-          >
+          <div className={styles.card} onClick={login}>
             <h2>
-              Learn <span>-&gt;</span>
+              AXIOS <span>-&gt;</span>
             </h2>
-            <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-          </a>
+            <p>API route with axios used to make a request inside api/login</p>
+          </div>
 
           <a
             href='https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'

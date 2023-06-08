@@ -28,12 +28,14 @@ export default async function login(req, res) {
         referrerPolicy: 'origin-when-cross-origin',
         body: JSON.stringify({ username: 'fq', password: 'shrek' }),
       });
+      res.status(200).send({ msg: 'FETCH API WORKS' });
     } else {
       const data = await axios
         .post(`https://pointsixtyfive.com/xenforo/api/auth`, userLoginData, options)
         .then((response) => {
           console.log(response.data);
         })
+
         .catch((e) => {
           if (e.response.status === 400) {
             res
@@ -47,8 +49,8 @@ export default async function login(req, res) {
             return;
           }
         });
+      res.status(200).send({ msg: 'AXIOS WORKS' });
     }
-    res.status(200).send({ msg: 'all right all right all right', data: data });
 
     // if (data?.user.secondary_group_ids.length === 0) {
     //   res.status(401).send({ message: 'You do not have permission to view this content.' });
